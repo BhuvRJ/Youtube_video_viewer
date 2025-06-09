@@ -3,7 +3,7 @@ name: Daily YouTube Shorts Surfer
 on:
   workflow_dispatch:
   schedule:
-    - cron: '35 19 * * *'
+    - cron: '47 2 * * *'
 
 jobs:
   run-selenium-script:

@@ -23,37 +23,29 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
 
-try:
-    logging.info("Initializing Chrome WebDriver.")
-    driver = webdriver.Chrome(options=options)
 
-    url = 'https://www.youtube.com/@RoamingBoi/shorts'
-    logging.info(f"Navigating to URL: {url}")
-    driver.get(url)
+logging.info("Initializing Chrome WebDriver.")
+driver = webdriver.Chrome(options=options)
 
-    time.sleep(5)
+url = 'https://www.youtube.com/@RoamingBoi/shorts'
+logging.info(f"Navigating to URL: {url}")
+driver.get(url)
 
-    actions = ActionChains(driver)
+time.sleep(5)
 
-    i = 0
-    while i < 15:
-        log_message = f"Scrolling to next video... ({i + 1}/15)"
-        print(log_message)
-        logging.info(log_message)
+actions = ActionChains(driver)
 
-        actions.send_keys(Keys.ARROW_DOWN).perform()
-        time.sleep(15)
-        i = i + 1
+i = 0
+while i < 15:
+    log_message = f"Scrolling to next video... ({i + 1}/15)"
+    print(log_message)
+    logging.info(log_message)
 
-except Exception as e:
-    error_message = f"An error occurred: {e}"
-    print(error_message)
-    logging.error(error_message)
-    driver.save_screenshot('error_screenshot.png')
+    actions.send_keys(Keys.ARROW_DOWN).perform()
+    time.sleep(1)
+    i = i + 1
 
-finally:
-    logging.info("Automation finished. Closing driver.")
-    logging.info("--- End of automation run ---\n")
-    print("Automation finished. Closing driver.")
-    if 'driver' in locals() and driver:
-        driver.quit()
+
+print("Automation finished. Closing driver.")
+if 'driver' in locals() and driver:
+    driver.quit()
