@@ -31,23 +31,3 @@ jobs:
       - name: Run Python script
         run: python main.py
 
-      - name: Commit and push log files
-        if: always()
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          
-          # Add the log file. Use -f to force add if it's in .gitignore
-          git add -f automation_log.txt
-          
-          # Check if an error screenshot exists and add it
-          if [ -f "error_screenshot.png" ]; then
-            git add error_screenshot.png
-          fi
-          
-          # Commit the changes if there are any changes to commit
-          # The `|| exit 0` part prevents the workflow from failing if there's nothing to commit
-          git commit -m "Update automation log for $(date)" || exit 0
-          
-          # Push the changes back to the main branch
-          git push
