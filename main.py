@@ -42,7 +42,7 @@ try:
         logging.info(log_message)
 
         actions.send_keys(Keys.ARROW_DOWN).perform()
-        time.sleep(1)
+        time.sleep(15)
         i = i + 1
 
 except Exception as e:
